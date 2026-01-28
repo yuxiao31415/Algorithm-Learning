@@ -3,9 +3,10 @@
 数组是存放在连续内存空间上的相同类型数据的集合  
 二维数组? c++二维数组内存连续,java内存地址不对外暴露,不可知  
 ## 二分查找
-**704.二分查找**  
+**目标**: 掌握二分的两种写法,1.左闭右开2.左闭右闭  
+
+**题目:704.二分查找**  
 **位置**: https://leetcode.cn/problems/binary-search/description/  
-**目标**: 掌握二分的两种写法,1.左闭右开2.左闭右闭
 ```java
 // 左闭右开
 class Solution {
@@ -44,7 +45,7 @@ class Solution {
     }
 }
 ```
-**35.搜索插入位置**  
+**题目:35.搜索插入位置**  
 **位置:** https://leetcode.cn/problems/search-insert-position/description/
 ```java
 // 左闭右开
@@ -106,7 +107,7 @@ class Solution {
     }
 }
 ```
-**34.在排序数组中查找元素的第一个和最后一个位置**  
+**题目: 34.在排序数组中查找元素的第一个和最后一个位置**  
 **位置** https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/description/  
 ```java
 // 左闭右开
@@ -159,6 +160,66 @@ class Solution {
     }
 }
 ```
+## 双指针  
+**目标** 学会使用快慢指针和对撞指针  
+
+**题目: 27.移除元素**  
+**位置:** https://leetcode.cn/problems/remove-element/
+```java
+// 快慢指针
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int slowIndex = 0;
+        for (int fastIndex = 0; fastIndex < nums.length; fastIndex++) {//慢指针静止,快指针for循环
+            if (nums[fastIndex] != val) {
+                nums[slowIndex] = nums[fastIndex];
+                slowIndex++;
+            }
+        }
+        return slowIndex;
+    }
+}
+```
+**题目: 283.移动零**  
+**位置:** https://leetcode.cn/problems/move-zeroes/description/
+```java
+// 快慢指针
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int slowIndex = 0;
+        for (int fastIndex = 0; fastIndex < nums.length; fastIndex++) {//慢指针静止,快指针for循环
+            if (nums[fastIndex] != 0) {
+                int temp= nums[fastIndex];// 关键点1.必须先将fast置为零,在将slow置为fast的值,避免[1]这种情况
+                nums[fastIndex]=0;
+                nums[slowIndex] = temp;
+                slowIndex++;
+            }
+        }
+    }
+}
+```
+**题目: 977.有序数组的平方**
+**位置** https://leetcode.cn/problems/squares-of-a-sorted-array/description/  
+```java
+// 碰撞指针
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+        int l=0;
+        int r=nums.length-1;
+        int[] ans = new int[nums.length];
+        int i=nums.length-1;
+        while(l<=r){
+            ans[i--] = nums[l]*nums[l]>nums[r]*nums[r]?
+                       nums[l]*nums[l++]:
+                       nums[r]*nums[r--];
+        }
+        return ans;
+    }
+}
+```
+
+
+
 
 
 

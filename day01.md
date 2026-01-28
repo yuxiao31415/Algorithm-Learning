@@ -3,6 +3,7 @@
 数组是存放在连续内存空间上的相同类型数据的集合  
 二维数组? c++二维数组内存连续,java内存地址不对外暴露,不可知  
 ## 二分查找
+**704.二分查找**
 **位置**: https://leetcode.cn/problems/binary-search/description/  
 **目标**: 掌握二分的两种写法,1.左闭右开2.左闭右闭
 ```java
@@ -42,4 +43,75 @@ class Solution {
         return -1;
     }
 }
+```
+**35.搜索插入位置**
+**位置:** https://leetcode.cn/problems/search-insert-position/description/
+```java
+// 左闭右开
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length;
+        while(left<right){
+            int mid = left+(right-left)/2;
+            if(target==nums[mid]){
+                return mid;
+            }else if(target<nums[mid]){   
+                right = mid; 
+            }else{
+                left = mid+1;
+            }
+        }
+        /*
+        四种情况,
+        1. 答案在最左边索引0处,
+        此时区间[left,right)右侧right不断左移,直到right=left->返回left;
+        2.答案在mid到mid+1之间
+        此时target>nums[mid],区间[mid+1,right)不断左移直到right=left=mid+1->返回left
+        3.答案在mid-1到mid之间
+        此时target<nums[mid],区间[left,mid)不断右移直到left=right=mid->返回left
+        4.答案在最右边索引mums.length处,
+        此时区间[left,right)左侧left不断左移,直到left=right->返回left
+        */
+        return left; 
+    }
+}
+// 左闭右闭
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length-1;
+        while(left<=right){
+            int mid = left+(right-left)/2;
+            if(target==nums[mid]){
+                return mid;
+            }else if(target<nums[mid]){   
+                right = mid-1; 
+            }else{
+                left = mid+1;
+            }
+        }
+        /*
+        一共四种情况,
+        1. 答案在最左边索引0处,
+        此时区间[left,right]右侧right不断左移,直到right=left-1->返回left;
+        2.答案在mid到mid+1之间
+        此时target>nums[mid],区间[mid+1,right]不断左移直到right=left-1=mid->返回left
+        3.答案在mid-1到mid之间
+        此时target<nums[mid],区间[left,mid-1]不断右移直到left=right+1=mid->返回left
+        4.答案在最右边索引mums.length处,
+        此时区间[left,right]左侧left不断右移,直到left=right+1->返回left
+        */
+        return left;// 一般情况下带入最左端或最右端的特例即可直到是left还是right
+    }
+}
+```
+**34.在排序数组中查找元素的第一个和最后一个位置**
+
+
+
+
+
+
+
 

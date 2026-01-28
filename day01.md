@@ -3,7 +3,7 @@
 数组是存放在连续内存空间上的相同类型数据的集合  
 二维数组? c++二维数组内存连续,java内存地址不对外暴露,不可知  
 ## 二分查找
-**704.二分查找**
+**704.二分查找**  
 **位置**: https://leetcode.cn/problems/binary-search/description/  
 **目标**: 掌握二分的两种写法,1.左闭右开2.左闭右闭
 ```java
@@ -44,7 +44,7 @@ class Solution {
     }
 }
 ```
-**35.搜索插入位置**
+**35.搜索插入位置**  
 **位置:** https://leetcode.cn/problems/search-insert-position/description/
 ```java
 // 左闭右开
@@ -106,7 +106,60 @@ class Solution {
     }
 }
 ```
-**34.在排序数组中查找元素的第一个和最后一个位置**
+**34.在排序数组中查找元素的第一个和最后一个位置**  
+**位置** https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/description/  
+```java
+// 左闭右开
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int left=0;
+        int right=nums.length;
+        int ansleft=-1;
+        int ansright=-1;
+        while(left<right){
+            int mid = left+(right-left)/2;
+            if(target==nums[mid]){
+                ansleft = mid;
+                ansright= mid;
+                while(ansleft>0&&nums[ansleft-1]==target){ansleft--;}
+                while(ansright<nums.length-1&&nums[ansright+1]==target){ansright++;}
+                break;
+            }else if(target<nums[mid]){
+                right=mid;
+            }else{
+                left=mid+1;
+            }
+        }
+        return new int[]{ansleft,ansright};
+    }
+}
+
+// 左闭右闭
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int left=0;
+        int right=nums.length-1;
+        int ansleft=-1;
+        int ansright=-1;
+        while(left<=right){
+            int mid = left+(right-left)/2;
+            if(target==nums[mid]){
+                ansleft = mid;
+                ansright= mid;
+                while(ansleft>0&&nums[ansleft-1]==target){ansleft--;}
+                while(ansright<nums.length-1&&nums[ansright+1]==target){ansright++;}
+                break;
+            }else if(target<nums[mid]){
+                right=mid-1;
+            }else{
+                left=mid+1;
+            }
+        }
+        return new int[]{ansleft,ansright};
+    }
+}
+```
+
 
 
 

@@ -10,15 +10,33 @@
 class Solution {
     public int search(int[] nums, int target) {
         int left = 0;
-        int right = nums.length;
-        while(left<right){
+        int right = nums.length;// 关键点1. 右开区间,时刻保证取不到这个值
+        while(left<right){      // 关键点2. 左闭右开,left等于right就说明结束了 例如[1,1) 取不到1
+            int mid = left+(right-left)/2;
+            if(nums[mid]==target){ // 关键点3. 把==情况单独拿出来
+                return mid;
+            }else if(nums[mid]<target){ // 关键点4. left可以取到mid但是nums[mid]!=target,所以left不能为mid,可以为mid+1;
+                left = mid +1;
+            }else{
+                right= mid; // 关键点5. right取不到mid,答案区间在[left,mid),如果mid-1,那么就会变成[left,mid-1)导致缺少mid-1时的值
+            }
+        }
+        return -1;
+    }
+}
+// 左闭右闭
+class Solution {
+    public int search(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length-1;
+        while(left<=right){
             int mid = left+(right-left)/2;
             if(nums[mid]==target){
                 return mid;
             }else if(nums[mid]<target){
                 left = mid +1;
             }else{
-                right= mid;
+                right= mid-1;
             }
         }
         return -1;

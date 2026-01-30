@@ -31,7 +31,7 @@ public class ListNode {
     }
 }
 ``` 
-**题目:203.移除链表元素**
+**题目:203.移除链表元素**  
 **位置:** https://leetcode.cn/problems/remove-linked-list-elements/description/  
 ```java
 class Solution {

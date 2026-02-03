@@ -57,7 +57,7 @@ class Solution {
         Arrays.sort(nums);
         List<List<Integer>> ans = new ArrayList<>();
         for(int i=0;i<nums.length-2;i++){
-            if(i!=0&&nums[i]==nums[i-1]) continue; // 111 222 这种情况,之有第一次遇到１或者２才会执行　否则跳过
+            if(i!=0&&nums[i]==nums[i-1]) continue; // 111 222 这种情况,只有第一次遇到1或者2才会执行,再遇到如果处理就会造成结果元素重复，所以得跳过
             if(nums[i]>0) break;
             int l = i+1;
             int r = nums.length-1;
@@ -91,13 +91,14 @@ class Solution {
                 continue;
             }
             for(int j=i+1;j<nums.length-2;j++){
-                if(j!=i+1&&nums[j]==nums[j-1]){// 关键点1. 比如这种情况 1 1 1 1 2 3 4 5 此时i等于1 j也得等于一，且下次j就得跨过全部1
+                if(j!=i+1&&nums[j]==nums[j-1]){// 关键点1. 比如这种情况 1 1 1 1 2 3 4 5 此时i等于1 j也得等于1,且下次j就得跨过全部1
+                                                // 以及11 22 3456 这种情况，所以仅仅当j=i+1时放行，其余时候都得判断是否等于上一个元素
                     continue;
                 }
                 int l = j+1;
                 int r = nums.length-1;
                 while(l<r){
-                    long sum = (long)nums[i]+nums[j]+nums[l]+nums[r]; //关键点2. 注意取值范围
+                    long sum = (long)nums[i]+nums[j]+nums[l]+nums[r]; //关键点2. 注意取值范围用long来记录
                     if(sum==target){
                         ans.add(new ArrayList<>(Arrays.asList(nums[i],nums[j],nums[l],nums[r])));
                         while(l<r&&nums[l]==nums[l+1]) l++;

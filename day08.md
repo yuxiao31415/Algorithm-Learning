@@ -57,9 +57,17 @@ public class Main {
 **题目: 28. 实现 strStr()**   
 **位置:**  https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/description/   
 ```java
+/*
+ 1、next数组初始化不用想，next[0] =0,因为首字符没有前后缀这一说(知道什么叫做前缀以及后缀)，下面就是定义双指针了，i表示后缀的末尾位置，j表示前缀的末尾位置，也表示最长公共前后缀的长度，j = 0，后序遍历i从1开始，注意：i与j都表示的是next数组下标的位置。
+2、前后缀位置所指的字符相等的情况(i,j)
+3、前后缀位置所指的元素不相等的情况
+4、更新next数组；
+*/
 class Solution {
     // KMP 算法
     // ss: 原串(string)  pp: 匹配串(pattern)
+    // next[i] 表示什么？ 匹配串前 i 个字符中，最长的相等前后缀长度
+    // j表示最长的相等前后缀长度,所以必须从零开始
     public int strStr(String ss, String pp) {
         if (pp.isEmpty()) return 0;
         

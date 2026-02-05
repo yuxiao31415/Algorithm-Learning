@@ -65,6 +65,7 @@ j = 0，后序遍历i从1开始，注意：i与j都表示的是next数组下标�
 3、前后缀位置所指的元素不相等的情况
 4、更新next数组；
 */
+// aabaabaafa aabaaf这个例子最契合
 class Solution {
     // KMP 算法
     // ss: 原串(string)  pp: 匹配串(pattern)

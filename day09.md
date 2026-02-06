@@ -56,7 +56,7 @@ class MyQueue {
     }
 }
 ```
-**题目: 20.有效的括号**
+**题目: 20.有效的括号**  
 **位置:** https://leetcode.cn/problems/valid-parentheses/description/  
 ```java
 class Solution {

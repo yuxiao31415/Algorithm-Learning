@@ -17,6 +17,7 @@ first(top) → [3][2][1] ← last
 | 出            | `pop()`          | `poll()`           | `removeFirst()` / `removeLast()` |
 | 查看顶部/队首 | `peek()`         | `peek()`           | `peekFirst()` / `peekLast()`     |
 | 判断空        | `isEmpty()`      | `isEmpty()`        | 相同                             |
+
 **题目: 232.用栈实现队列** 
 **位置:** https://leetcode.cn/problems/implement-queue-using-stacks/description/  
 ```java

@@ -64,7 +64,7 @@ class Solution {
 
 **题目: 347.前k个高频元素**  
 **位置:**  https://leetcode.cn/problems/top-k-frequent-elements/description/  
-``java
+```java
 class Solution {
     //解法1：基于大顶堆实现
     public int[] topKFrequent(int[] nums, int k) {

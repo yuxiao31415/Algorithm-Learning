@@ -113,5 +113,32 @@ class Solution {
 **题目: 106. 从中序与后序遍历序列构造二叉树**   
 **位置:**  https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/    
 ```java
+class Solution {
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        return dfs(inorder,postorder);
+    }
+    private TreeNode dfs(int[] inorder, int[] postorder){
+        int len = postorder.length;
+        if(len==0){
+            return null;
+        }
+        int index = indexOf(inorder, postorder[len - 1]);
+        int[] leftInorder = Arrays.copyOfRange(inorder,0,index);
+        int[] rightInorfer = Arrays.copyOfRange(inorder,index+1,len);
+        int[] leftPostorder  = Arrays.copyOfRange(postorder,0,index);
+        int[] rightPostorder  = Arrays.copyOfRange(postorder,index,len-1);
+        TreeNode left = dfs(leftInorder,leftPostorder);
+        TreeNode right = dfs(rightInorfer,rightPostorder);
+        return new TreeNode(postorder[len-1],left,right);
 
+    }
+    private int indexOf(int[] nums,int target){
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==target){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
 ```

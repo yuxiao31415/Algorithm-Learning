@@ -1,4 +1,4 @@
-##  二叉树part06  
+##  二叉树part07 
 **题目:  530.二叉搜索树的最小绝对差**  
 **位置:**  https://leetcode.cn/problems/minimum-absolute-difference-in-bst/description/   
 ```java

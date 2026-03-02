@@ -61,7 +61,16 @@ class Solution {
 }
 ```
 **题目:90.子集II**  
-**位置:**  https://leetcode.cn/problems/subsets-ii/description/    
+**位置:**  https://leetcode.cn/problems/subsets-ii/description/  
+```
+            []
+        /    |    \
+       1     2     2
+     /  \    | 
+    2    2   2
+同层 树层去重
+path 树枝去重
+```  
 ```java
 // 去重方法类似 https://leetcode.cn/problems/combination-sum-ii/description/  
 class Solution {

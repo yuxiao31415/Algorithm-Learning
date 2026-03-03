@@ -67,7 +67,7 @@ class Solution {
                 five--;
                 ten++;
             } else if (bills[i] == 20) {
-                if (ten > 0) {
+                if (ten > 0) {//  这块体现了贪心,5的用处更广,所有有10先用10
                     ten--;
                     five--;
                 } else {

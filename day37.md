@@ -11,3 +11,49 @@
 3. dp数组如何初始化
 4. 确定遍历顺序
 5. 举例推导dp数组
+## 算法题  
+**题目: 509. 斐波那契数**  
+**位置:**  https://leetcode.cn/problems/fibonacci-number/description/  
+```java
+class Solution {
+    public int fib(int n) {
+        int[] f = new int[n+2];
+        f[0]=0;
+        f[1] =1;
+        for(int i=2;i<=n;i++){
+            f[i] = f[i-1]+f[i-2];
+        }
+        return f[n];
+    }
+}
+```
+**题目: 70. 爬楼梯**  
+**位置:**  https://leetcode.cn/problems/climbing-stairs/description/    
+```java
+class Solution {
+    public int climbStairs(int n) {
+        int[] f = new int[n+2];
+        f[0]=0;
+        f[1] =1;
+        f[2] =2;
+        for(int i=3;i<=n;i++){
+            f[i] = f[i-1]+f[i-2];
+        }
+        return f[n];
+    }
+}
+```
+**题目: 746. 使用最小花费爬楼梯**  
+**位置:**  https://leetcode.cn/problems/min-cost-climbing-stairs/description/  
+```java
+class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+        int[] f = new  int[cost.length+1];
+        for(int i=1;i<cost.length;i++){
+            f[i+1] = Math.min(f[i]+cost[i],f[i-1]+cost[i-1]);
+        }
+        return f[cost.length];
+
+    }
+}
+```
